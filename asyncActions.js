@@ -3,27 +3,22 @@ const thunk = require('redux-thunk').default;
 const axios = require('axios');
 const { createLogger } = require('redux-logger');
 
-// Ensure logger is properly created
 const logger = createLogger();
 
-// Initial state
 const initialState = {
     loading: false,
     users: [],
     error: ''
 };
 
-// Action types
 const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST';
 const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
 const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE';
 
-// Action creators
 const fetchUsersRequest = () => ({ type: FETCH_USERS_REQUEST });
 const fetchUsersSuccess = (users) => ({ type: FETCH_USERS_SUCCESS, payload: users });
 const fetchUsersFailure = (error) => ({ type: FETCH_USERS_FAILURE, payload: error });
 
-// Reducer
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_USERS_REQUEST:
@@ -37,7 +32,6 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-// Asynchronous action creator
 const fetchUsers = () => {
     return async (dispatch) => {
         dispatch(fetchUsersRequest());
@@ -51,7 +45,6 @@ const fetchUsers = () => {
     };
 };
 
-// Create store with middleware
 const middlewares = [thunk, logger];
 console.log('Middlewares:', middlewares);
 
@@ -61,10 +54,8 @@ const store = createStore(
 );
 
 
-// Subscribe to store updates
 store.subscribe(() => {
     console.log(store.getState());
 });
 
-// Dispatch the async action
 store.dispatch(fetchUsers());
