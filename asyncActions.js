@@ -46,7 +46,7 @@ const fetchUsers = () => {
 };
 
 const middlewares = [thunk, logger];
-console.log('Middleware:', middlewares);
+console.log('Middlewares :', middlewares);
 
 const store = createStore(
     reducer,
