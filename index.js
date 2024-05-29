@@ -71,6 +71,6 @@ store.dispatch(iceCream());
 
 const unsubscribe = store.subscribe(() => console.log("Updated state:", store.getState()));
 
-console.log("Updat state after dispatching actions:", store.getState());
+console.log("Updat state after dispatching action:", store.getState());
 
 unsubscribe();
